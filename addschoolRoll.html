@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="bootstrap.css"/>
+		<script src="ajax.js"></script>
+		<script type="text/javascript">
+		
+			window.onload=function(){
+				var btn1=document.getElementById("btn1");
+				var inputs=document.getElementsByTagName("input");
+				btn1.onclick=function(){
+					
+					box({
+						method:"post",
+						url:"addschoolRoll.php",
+						data:{
+							id:inputs[0].value,
+							name:inputs[1].value,
+							primarySchool:inputs[2].value,
+							middleSchool:inputs[3].value,
+							highSchool:inputs[4].value,
+							ugd:inputs[5].value,
+							gd:inputs[6].value,
+							doctor:inputs[7].value
+						},
+						success:function(result){
+							
+							alert('成功增加学籍信息');
+							
+						},
+						error:function(msg){
+							alert('ajax失败');
+							alert(msg);
+						}
+						
+					});
+					
+					}
+				}	
+		</script>
+	</head>
+	<body>
+		<div class="container">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2>增加学籍信息</h2>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+						  <label for="id">工号</label>
+						  <input type="text" class="form-control" name="id">
+						</div>
+						<div class="form-group">
+						  <label for="name">姓名</label>
+						  <input type="text" class="form-control"  name="name">
+						</div>
+						<div class="form-group">
+						  <label for="sex">小学</label>
+						  <input type="text" class="form-control"  name="sex">
+						</div>
+						<div class="form-group">
+						  <label for="birthday">初中</label>
+						  <input type="datetime" class="form-control" name="birthday">
+						</div>
+						<div class="form-group">
+						  <label for="email">高中</label>
+						  <input type="email" class="form-control" name="email" >
+						</div>
+						
+						<div class="form-group">
+						  <label for="department">本科</label>
+						  <input type="text" class="form-control" name="department">
+						</div>
+						<div class="form-group">
+						  <label for="department">研究生</label>
+						  <input type="text" class="form-control" name="department">
+						</div>
+						<div class="form-group">
+						  <label for="department">博士</label>
+						  <input type="text" class="form-control" name="department">
+						</div>
+						<button type="submit" id="btn1" class="btn btn-primary">增加学籍信息</button>
+						
+						
+							
+					</div>
+				</div>
+		</div>
+		
+	</body>
+</html>

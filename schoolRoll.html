@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="bootstrap.css"/>
+		<script src="ajax.js"></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				var btn1=document.getElementById("btn1");
+				var btn2=document.getElementById("btn2");
+				var btn3=document.getElementById("btn3");
+				var btn4=document.getElementById("btn4");
+				var t1=document.getElementById("t1");
+				btn1.onclick=function(){
+					
+					box({
+						method:"get",
+						url:"selectschoolRoll.php",
+						success:function(result){
+							
+							
+							
+							var arr=JSON.parse(result);
+							
+							var str="";
+							
+							for (var i=0;i<arr.length;i++){
+								
+								str+=`<tr>
+										<td>${arr[i].id}</td>
+										<td>${arr[i].name}</td>
+										<td>${arr[i].primarySchool}</td>
+										<td>${arr[i].middleSchool}</td>
+										<td>${arr[i].highSchooll}</td>
+										<td>${arr[i].ugd}</td>
+										<td>${arr[i].gd}</td>
+										<td>${arr[i].doctor}</td>
+									</tr>`;
+							}
+							
+							t1.innerHTML=str;
+							
+						},
+						error:function(msg){
+							
+							alert(msg);
+						}
+					})
+					
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2>学籍信息管理</h2>
+					</div>
+					<div class="panel-body">
+						<button id="btn1" class="btn btn-primary">获取学籍信息</button>
+						<button id="btn2" class="btn btn-primary" onclick=window.open("updateschoolRoll.html")>更新学籍信息</button>
+						<button id="btn3" class="btn btn-primary"  onclick=window.open("addschoolRoll.html")>添加学籍信息</button>
+						<button id="btn4" class="btn btn-primary" onclick=window.open("deleteschoolRoll.html")>删除学籍信息</button>
+						<br>
+						<table class="table table-hover">
+							<thead><tr>
+								<td>工号</td>
+								<td>姓名</td>
+								<td>小学</td>
+								<td>初中</td>
+								<td>高中</td>
+								<td>大学</td>
+								<td>本科</td>
+								<td>博士</td>
+							</tr></thead>
+							<tbody id="t1">
+							
+							</tbody>
+						</table>
+					</div>
+				</div>
+		</div>
+		
+		
+		
+		
+		
+	</body>
+</html>

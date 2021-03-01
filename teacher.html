@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="bootstrap.css"/>
+		<script src="ajax.js"></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				var btn1=document.getElementById("btn1");
+				var btn2=document.getElementById("btn2");
+				var btn3=document.getElementById("btn3");
+				var btn4=document.getElementById("btn4");
+				var t1=document.getElementById("t1");
+				btn1.onclick=function(){
+					
+					box({
+						method:"get",
+						url:"showteacher1.php",
+						success:function(result){
+							
+							
+							
+							var arr=JSON.parse(result);
+							
+							var str="";
+							
+							for (var i=0;i<arr.length;i++){
+								
+								str+=`<tr>
+										<td>${arr[i].id}</td>
+										<td>${arr[i].name}</td>
+										<td>${arr[i].sex}</td>
+										<td>${arr[i].birthday}</td>
+										<td>${arr[i].email}</td>
+										<td>${arr[i].job}</td>
+										<td>${arr[i].department}</td>
+									</tr>`;
+							}
+							
+							t1.innerHTML=str;
+							
+						},
+						error:function(msg){
+							
+							alert(msg);
+						}
+					})
+					
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2>教师信息管理</h2>
+					</div>
+					<div class="panel-body">
+						<button id="btn1" class="btn btn-primary">获取教师信息</button>
+						<button id="btn2" class="btn btn-primary" onclick=window.open("updateteacher.html")>更新教师信息</button>
+						<button id="btn3" class="btn btn-primary"  onclick=window.open("addteacher.html")>添加教师信息</button>
+						<button id="btn4" class="btn btn-primary" onclick=window.open("deleteteacher.html")>删除教师信息</button>
+						<br>
+						<table class="table table-hover">
+							<thead><tr>
+								<td>工号</td>
+								<td>姓名</td>
+								<td>性别</td>
+								<td>出生日期</td>
+								<td>电子邮箱</td>
+								<td>职称</td>
+								<td>部门</td>
+							</tr></thead>
+							<tbody id="t1">
+							
+							</tbody>
+						</table>
+					</div>
+				</div>
+		</div>
+		
+		
+		
+		
+		
+	</body>
+</html>
